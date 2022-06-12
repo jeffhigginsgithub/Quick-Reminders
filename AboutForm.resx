@@ -117,4 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>v0.5
+- Resolved issue with commas in message field
+- Update delay feature to combobox setup
+
+v0.4
+- Added 'Copy msg to new' button
+- Update date/time if not in focus
+
+v0.3
+- Added dark mode
+
+v0.2
+- Fixed issue with column sorting
+
+v0.1
+- Initial release for beta testing</value>
+  </data>
 </root>

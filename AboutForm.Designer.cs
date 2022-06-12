@@ -29,6 +29,7 @@ namespace QuickReminders
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.TitleLabel = new System.Windows.Forms.Label();
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.VersionLabel = new System.Windows.Forms.Label();
@@ -66,7 +67,7 @@ namespace QuickReminders
             this.VersionLabel.Name = "VersionLabel";
             this.VersionLabel.Size = new System.Drawing.Size(63, 13);
             this.VersionLabel.TabIndex = 2;
-            this.VersionLabel.Text = "Version: 0.4";
+            this.VersionLabel.Text = "Version: 0.5";
             // 
             // ContactMessageLabel
             // 
@@ -130,16 +131,14 @@ namespace QuickReminders
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(195, 110);
             this.textBox1.TabIndex = 10;
-            this.textBox1.Text = "v0.4\r\n- Added \'Copy msg to new\' button\r\n- Update date/time if not in focus\r\nv0.3\r" +
-    "\n- Added dark mode\r\nv0.2\r\n- Fixed issue with column sorting\r\nv0.1\r\n- Initial rel" +
-    "ease for beta testing";
+            this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CloseButton;
-            this.ClientSize = new System.Drawing.Size(232, 333);
+            this.ClientSize = new System.Drawing.Size(243, 339);
             this.ControlBox = false;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.EmailLinkLabel);
