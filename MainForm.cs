@@ -478,10 +478,11 @@ namespace QuickReminders
                     //Get the reminder that is checked
                     string[] newReminderEntry = new string[3];
                     //Convert the sortable time into a DateTime object
-                    DateTime dateTimePlusDelay = Convert.ToDateTime(ReminderList.Items[i].SubItems[0].Text);
-                    
+                    //DateTime dateTimePlusDelay = Convert.ToDateTime(ReminderList.Items[i].SubItems[0].Text);
+                    DateTime dateTimePlusDelay = DateTime.Now;
+
                     //Add time to the DateTime object, the amount determined by the combobox
-                    switch(DelayCombobox.Text)
+                    switch (DelayCombobox.Text)
                     {
                         case "10 minutes":
                             dateTimePlusDelay = dateTimePlusDelay.AddMinutes(10);

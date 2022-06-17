@@ -121,6 +121,7 @@
     <value>v0.5
 - Resolved issue with commas in message field
 - Update delay feature to combobox setup
+- Changed delay to delay from now
 
 v0.4
 - Added 'Copy msg to new' button
