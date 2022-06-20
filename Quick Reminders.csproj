@@ -7,7 +7,7 @@
     <ProjectGuid>{BFC42E44-7EE0-485D-B76D-0AF85B65C12A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>QuickReminders</RootNamespace>
-    <AssemblyName>QuickReminders</AssemblyName>
+    <AssemblyName>Quick Reminders</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
