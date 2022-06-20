@@ -37,6 +37,9 @@ namespace QuickReminders
             this.AddReminderButton = new System.Windows.Forms.Button();
             this.newReminderGroup = new System.Windows.Forms.GroupBox();
             this.reminderListGroup = new System.Windows.Forms.GroupBox();
+            this.DelayLabel = new System.Windows.Forms.Label();
+            this.DelayCombobox = new System.Windows.Forms.ComboBox();
+            this.DelayButton = new System.Windows.Forms.Button();
             this.CopyAsNewButton = new System.Windows.Forms.Button();
             this.DeleteRemindersButton = new System.Windows.Forms.Button();
             this.DateTimeLabel = new System.Windows.Forms.Label();
@@ -53,9 +56,6 @@ namespace QuickReminders
             this.Timer15Seconds = new System.Windows.Forms.Timer(this.components);
             this.Timer1Second = new System.Windows.Forms.Timer(this.components);
             this.AboutButton = new System.Windows.Forms.Button();
-            this.DelayButton = new System.Windows.Forms.Button();
-            this.DelayCombobox = new System.Windows.Forms.ComboBox();
-            this.DelayLabel = new System.Windows.Forms.Label();
             this.newReminderGroup.SuspendLayout();
             this.reminderListGroup.SuspendLayout();
             this.reminderControlGroup.SuspendLayout();
@@ -132,6 +132,48 @@ namespace QuickReminders
             this.reminderListGroup.TabIndex = 6;
             this.reminderListGroup.TabStop = false;
             this.reminderListGroup.Text = "Reminders";
+            // 
+            // DelayLabel
+            // 
+            this.DelayLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.DelayLabel.AutoSize = true;
+            this.DelayLabel.Location = new System.Drawing.Point(300, 193);
+            this.DelayLabel.Name = "DelayLabel";
+            this.DelayLabel.Size = new System.Drawing.Size(58, 13);
+            this.DelayLabel.TabIndex = 19;
+            this.DelayLabel.Text = "Delay for...";
+            // 
+            // DelayCombobox
+            // 
+            this.DelayCombobox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.DelayCombobox.BackColor = System.Drawing.SystemColors.Window;
+            this.DelayCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DelayCombobox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DelayCombobox.FormattingEnabled = true;
+            this.DelayCombobox.Items.AddRange(new object[] {
+            "10 minutes",
+            "1 hour",
+            "1 day",
+            "1 week"});
+            this.DelayCombobox.Location = new System.Drawing.Point(364, 190);
+            this.DelayCombobox.Name = "DelayCombobox";
+            this.DelayCombobox.Size = new System.Drawing.Size(78, 21);
+            this.DelayCombobox.TabIndex = 18;
+            this.DelayCombobox.TabStop = false;
+            this.DelayCombobox.SelectedIndexChanged += new System.EventHandler(this.DelayCombobox_SelectedIndexChanged);
+            this.DelayCombobox.DropDownClosed += new System.EventHandler(this.DelayCombobox_SelectedIndexChanged);
+            // 
+            // DelayButton
+            // 
+            this.DelayButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.DelayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DelayButton.Location = new System.Drawing.Point(448, 188);
+            this.DelayButton.Name = "DelayButton";
+            this.DelayButton.Size = new System.Drawing.Size(75, 23);
+            this.DelayButton.TabIndex = 17;
+            this.DelayButton.Text = "Delay";
+            this.DelayButton.UseVisualStyleBackColor = true;
+            this.DelayButton.Click += new System.EventHandler(this.DelayButton_Click);
             // 
             // CopyAsNewButton
             // 
@@ -240,6 +282,7 @@ namespace QuickReminders
             this.DarkModeCheckbox.Name = "DarkModeCheckbox";
             this.DarkModeCheckbox.Size = new System.Drawing.Size(78, 17);
             this.DarkModeCheckbox.TabIndex = 4;
+            this.DarkModeCheckbox.TabStop = false;
             this.DarkModeCheckbox.Text = "Dark mode";
             this.DarkModeCheckbox.UseVisualStyleBackColor = true;
             this.DarkModeCheckbox.CheckedChanged += new System.EventHandler(this.EnableApplyButton);
@@ -300,51 +343,10 @@ namespace QuickReminders
             this.AboutButton.Name = "AboutButton";
             this.AboutButton.Size = new System.Drawing.Size(75, 23);
             this.AboutButton.TabIndex = 8;
+            this.AboutButton.TabStop = false;
             this.AboutButton.Text = "About";
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
-            // 
-            // DelayButton
-            // 
-            this.DelayButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.DelayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DelayButton.Location = new System.Drawing.Point(448, 188);
-            this.DelayButton.Name = "DelayButton";
-            this.DelayButton.Size = new System.Drawing.Size(75, 23);
-            this.DelayButton.TabIndex = 17;
-            this.DelayButton.Text = "Delay";
-            this.DelayButton.UseVisualStyleBackColor = true;
-            this.DelayButton.Click += new System.EventHandler(this.DelayButton_Click);
-            // 
-            // DelayCombobox
-            // 
-            this.DelayCombobox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.DelayCombobox.BackColor = System.Drawing.SystemColors.Window;
-            this.DelayCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DelayCombobox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DelayCombobox.FormattingEnabled = true;
-            this.DelayCombobox.Items.AddRange(new object[] {
-            "10 minutes",
-            "1 hour",
-            "1 day",
-            "1 week"});
-            this.DelayCombobox.Location = new System.Drawing.Point(364, 190);
-            this.DelayCombobox.Name = "DelayCombobox";
-            this.DelayCombobox.Size = new System.Drawing.Size(78, 21);
-            this.DelayCombobox.TabIndex = 18;
-            this.DelayCombobox.TabStop = false;
-            this.DelayCombobox.SelectedIndexChanged += new System.EventHandler(this.DelayCombobox_SelectedIndexChanged);
-            this.DelayCombobox.DropDownClosed += new System.EventHandler(this.DelayCombobox_SelectedIndexChanged);
-            // 
-            // DelayLabel
-            // 
-            this.DelayLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.DelayLabel.AutoSize = true;
-            this.DelayLabel.Location = new System.Drawing.Point(300, 193);
-            this.DelayLabel.Name = "DelayLabel";
-            this.DelayLabel.Size = new System.Drawing.Size(58, 13);
-            this.DelayLabel.TabIndex = 19;
-            this.DelayLabel.Text = "Delay for...";
             // 
             // MainForm
             // 
