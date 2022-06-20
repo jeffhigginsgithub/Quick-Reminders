@@ -56,6 +56,7 @@ namespace QuickReminders
             this.Timer15Seconds = new System.Windows.Forms.Timer(this.components);
             this.Timer1Second = new System.Windows.Forms.Timer(this.components);
             this.AboutButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.newReminderGroup.SuspendLayout();
             this.reminderListGroup.SuspendLayout();
             this.reminderControlGroup.SuspendLayout();
@@ -348,12 +349,22 @@ namespace QuickReminders
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(397, 336);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(554, 381);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.AboutButton);
             this.Controls.Add(this.reminderControlGroup);
             this.Controls.Add(this.reminderListGroup);
@@ -403,6 +414,7 @@ namespace QuickReminders
         private System.Windows.Forms.Label DelayLabel;
         private System.Windows.Forms.ComboBox DelayCombobox;
         private System.Windows.Forms.Button DelayButton;
+        private System.Windows.Forms.Button button1;
     }
 }
 
