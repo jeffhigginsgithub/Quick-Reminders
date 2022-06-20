@@ -6,11 +6,11 @@ I wanted a tool that sat somewhere between Post-It notes and Outlook in terms of
 
 ![Quick Reminders](https://user-images.githubusercontent.com/51849062/174615168-f5e44f7f-7aaa-4e11-8885-95a560ac177e.png)
 
-Select a date and time, enter a message, click the 'Add reminder' button.
+To add a reminder, select a date and time, enter a message, then click the 'Add reminder' button. Alerts will flash red when the date and time have been met.
 
-Alerts will flash red when the date and time have been met.
+If you'd like to delay a reminder, select it by clicking its checkbox, select an amount of time to delay the reminder, then click the 'Delay' button. You can only delay one reminder at a time.
 
-If you'd like to delay a reminder, select it by clicking the checkbox, select an amount of time to delay the reminder, then click the 'Delay' button. You can only delay one reminder at a time.
+To 'copy' a reminder, click its checkbox then click 'Copy msg as new'. This will copy the text of the reminder into the new reminder area. This is useful if you need to reschedule a reminder for a time that isn't handled by the delay options. You can only copy one reminder at a time.
 
 To delete reminders, select the checkboxes next to the reminders you want to delete, then click the 'Delete reminder/s' button.
 
