@@ -56,7 +56,6 @@ namespace QuickReminders
             this.Timer15Seconds = new System.Windows.Forms.Timer(this.components);
             this.Timer1Second = new System.Windows.Forms.Timer(this.components);
             this.AboutButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.newReminderGroup.SuspendLayout();
             this.reminderListGroup.SuspendLayout();
             this.reminderControlGroup.SuspendLayout();
@@ -349,22 +348,12 @@ namespace QuickReminders
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(397, 336);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "label1";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(554, 381);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.AboutButton);
             this.Controls.Add(this.reminderControlGroup);
             this.Controls.Add(this.reminderListGroup);
@@ -384,7 +373,6 @@ namespace QuickReminders
             this.reminderControlGroup.ResumeLayout(false);
             this.reminderControlGroup.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -415,7 +403,6 @@ namespace QuickReminders
         private System.Windows.Forms.Label DelayLabel;
         private System.Windows.Forms.ComboBox DelayCombobox;
         private System.Windows.Forms.Button DelayButton;
-        private System.Windows.Forms.Label label1;
     }
 }
 
