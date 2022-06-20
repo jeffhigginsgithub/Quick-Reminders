@@ -255,6 +255,8 @@ namespace QuickReminders
             //Disable form items that shouldn't be enabled
             DeleteRemindersButton.Enabled = false;
             CopyAsNewButton.Enabled = false;
+            DelayLabel.Enabled = false;
+            DelayCombobox.Enabled = false;
             DelayButton.Enabled = false;
         }
 
