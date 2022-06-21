@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>v1.0
+    <value>v1.1
+- Changed the way delay is calculated
+
+v1.0
 - Added updater, installer, uninstaller
 - Adds to Start Menu
 - Published to Git

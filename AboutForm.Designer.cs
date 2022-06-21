@@ -67,7 +67,7 @@ namespace QuickReminders
             this.VersionLabel.Name = "VersionLabel";
             this.VersionLabel.Size = new System.Drawing.Size(63, 13);
             this.VersionLabel.TabIndex = 2;
-            this.VersionLabel.Text = "Version: 1.0";
+            this.VersionLabel.Text = "Version: 1.1";
             // 
             // ContactMessageLabel
             // 
@@ -138,7 +138,7 @@ namespace QuickReminders
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CloseButton;
-            this.ClientSize = new System.Drawing.Size(236, 337);
+            this.ClientSize = new System.Drawing.Size(244, 341);
             this.ControlBox = false;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.EmailLinkLabel);
