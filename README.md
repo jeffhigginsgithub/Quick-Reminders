@@ -1,10 +1,13 @@
-# Quick-Reminders
+# Quick Reminders
 
 A simple program to help you remember.
 
 I wanted a tool that sat somewhere between Post-It notes and Outlook in terms of complexity. Just a little program that could stay on my screen and alert me when the predetermined time came to notes that I'd entered. Add in a few QOL options but nothing too much.
 
-#### To install: download 'setup.exe' found in the 'published' folder above. Run the executable to install the program and kindly ignore any Microsoft Defender SmartScreen warning messages by clicking the 'More info' link then the 'Run anyway' button.
+### To install
+Download 'Quick Reminders Installer.exe' found in the 'published' folder above, or [click here](https://github.com/jeffhigginsgithub/Quick-Reminders/blob/master/published/Quick%20Reminders%20Installer.exe). Run the executable to install the program and kindly ignore any Microsoft Defender SmartScreen warning messages by clicking the 'More info' link then the 'Run anyway' button.
+
+### Use
 
 ![Quick Reminders](https://user-images.githubusercontent.com/51849062/174615168-f5e44f7f-7aaa-4e11-8885-95a560ac177e.png)
 
