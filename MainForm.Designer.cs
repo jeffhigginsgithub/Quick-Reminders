@@ -344,7 +344,7 @@ namespace QuickReminders
             this.AboutButton.Size = new System.Drawing.Size(75, 23);
             this.AboutButton.TabIndex = 8;
             this.AboutButton.TabStop = false;
-            this.AboutButton.Text = "About1";
+            this.AboutButton.Text = "About";
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
