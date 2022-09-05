@@ -148,6 +148,7 @@ namespace QuickReminders
             //Set the initial conditions for some of the form objects
             ApplySettingsButton.Enabled = false;
             DeleteRemindersButton.Enabled = false;
+            DelayButton.Enabled = false;
             DelayCombobox.SelectedIndex = 0;
 
             //If reminders exist in the list...
@@ -466,7 +467,7 @@ namespace QuickReminders
                     //Fills out a new reminder with the current date and time, as well as the message of the selected reminder
                     reminderDate.Value = DateTime.Now;
                     reminderTime.Value = DateTime.Now;
-                    reminderMessageTextbox.Text = ReminderList.Items[i].SubItems[2].Text;
+                    reminderMessageTextbox.Text = ReminderList.Items[i].SubItems[3].Text;
                     ReminderList.Items[i].Checked = false;
                     DeleteRemindersButton.Enabled = false;
                     CopyAsNewButton.Enabled = false;
@@ -579,8 +580,8 @@ namespace QuickReminders
         }
 
         //Disable form objects
-        DeleteRemindersButton.Enabled = false;
-        CopyAsNewButton.Enabled = false;
+        //DeleteRemindersButton.Enabled = false;
+        //CopyAsNewButton.Enabled = false;
         //DelayLabel.Enabled = false;
         //DelayCombobox.Enabled = false;
         //DelayButton.Enabled = false;
