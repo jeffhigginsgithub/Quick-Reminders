@@ -148,6 +148,7 @@ namespace QuickReminders
             //Set the initial conditions for some of the form objects
             ApplySettingsButton.Enabled = false;
             DeleteRemindersButton.Enabled = false;
+            DelayButton.Enabled = false;
             DelayCombobox.SelectedIndex = 0;
 
             //If reminders exist in the list...
@@ -579,8 +580,8 @@ namespace QuickReminders
         }
 
         //Disable form objects
-        DeleteRemindersButton.Enabled = false;
-        CopyAsNewButton.Enabled = false;
+        //DeleteRemindersButton.Enabled = false;
+        //CopyAsNewButton.Enabled = false;
         //DelayLabel.Enabled = false;
         //DelayCombobox.Enabled = false;
         //DelayButton.Enabled = false;
