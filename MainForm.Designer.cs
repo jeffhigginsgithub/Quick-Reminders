@@ -56,6 +56,7 @@ namespace QuickReminders
             this.Timer15Seconds = new System.Windows.Forms.Timer(this.components);
             this.Timer1Second = new System.Windows.Forms.Timer(this.components);
             this.AboutButton = new System.Windows.Forms.Button();
+            this.randomID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.newReminderGroup.SuspendLayout();
             this.reminderListGroup.SuspendLayout();
             this.reminderControlGroup.SuspendLayout();
@@ -151,10 +152,14 @@ namespace QuickReminders
             this.DelayCombobox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DelayCombobox.FormattingEnabled = true;
             this.DelayCombobox.Items.AddRange(new object[] {
-            "10 minutes",
-            "1 hour",
-            "1 day",
-            "1 week"});
+            "-1 week",
+            "-1 day",
+            "-1 hour",
+            "-10 minutes",
+            "+10 minutes",
+            "+1 hour",
+            "+1 day",
+            "+1 week"});
             this.DelayCombobox.Location = new System.Drawing.Point(364, 190);
             this.DelayCombobox.Name = "DelayCombobox";
             this.DelayCombobox.Size = new System.Drawing.Size(78, 21);
@@ -229,6 +234,7 @@ namespace QuickReminders
             this.ReminderList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.UTCColumn,
             this.DateTimeColumn,
+            this.randomID,
             this.MessageColumn});
             this.ReminderList.GridLines = true;
             this.ReminderList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -258,6 +264,7 @@ namespace QuickReminders
             // 
             // MessageColumn
             // 
+            this.MessageColumn.DisplayIndex = 2;
             this.MessageColumn.Text = "Message";
             this.MessageColumn.Width = 380;
             // 
@@ -348,6 +355,12 @@ namespace QuickReminders
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
+            // randomID
+            // 
+            this.randomID.DisplayIndex = 3;
+            this.randomID.Text = "";
+            this.randomID.Width = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +416,7 @@ namespace QuickReminders
         private System.Windows.Forms.Label DelayLabel;
         private System.Windows.Forms.ComboBox DelayCombobox;
         private System.Windows.Forms.Button DelayButton;
+        private System.Windows.Forms.ColumnHeader randomID;
     }
 }
 

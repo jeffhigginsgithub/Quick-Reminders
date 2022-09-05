@@ -46,9 +46,10 @@ namespace QuickReminders
                     //Read the fixed width sorting date/time and display date/time plus the message
                     string sortingDateTime = line.Substring(0, 19);
                     string displayDateTime = line.Substring(20, 16);
-                    string reminderMessage = line.Substring(37);
+                    string randomID = line.Substring(37, 7);
+                    string reminderMessage = line.Substring(45);
                     //Create an array of these strings
-                    String[] reminderFromCSV = { sortingDateTime, displayDateTime, reminderMessage };
+                    String[] reminderFromCSV = { sortingDateTime, displayDateTime, randomID, reminderMessage };
                     //Add the array as a new item to the listview
                     ListViewItem newReminder = new ListViewItem(reminderFromCSV);
                     ReminderList.Items.Add(newReminder);
@@ -183,21 +184,24 @@ namespace QuickReminders
             //If there's something in the 'message' textbox...
             if (reminderMessageTextbox.TextLength > 0)
             {
-                string[] newReminderEntry = new string[3];
+                string[] newReminderEntry = new string[4];
                 string dateWith24HTime = reminderDate.Value.ToString("d") + " " + reminderTime.Value.ToString("HH:mm");
                 DateTime sortableDateTime = Convert.ToDateTime(dateWith24HTime);
 
-                //Create a new array with a sortable date, display date, and reminder message
+                //Create a new array with a sortable date, display date, reminder message, and random number
                 newReminderEntry[0] = sortableDateTime.ToString("s");
                 newReminderEntry[1] = reminderDate.Text + " - " + reminderTime.Text;
-                newReminderEntry[2] = reminderMessageTextbox.Text;
+                Random rnd = new Random();
+                int randomID = rnd.Next(1000000,2000000);
+                newReminderEntry[2] = randomID.ToString();
+                newReminderEntry[3] = reminderMessageTextbox.Text;
 
                 //Create a new listview item based on the array's values
                 ListViewItem newReminder = new ListViewItem(newReminderEntry);
                 ReminderList.Items.Add(newReminder);
                 
                 //Write the new reminder to the Reminders.csv and RemindersLog.csv files
-                String reminderCSVEntry = newReminderEntry[0] + "¦" + newReminderEntry[1] + "¦" + newReminderEntry[2];
+                String reminderCSVEntry = newReminderEntry[0] + "¦" + newReminderEntry[1] + "¦" + newReminderEntry[2] + "¦" + newReminderEntry[3];
                 String reminderLogEntry = "ADD," + reminderCSVEntry;
                 File.AppendAllText(GlobalConstants.reminderCSV, reminderCSVEntry + Environment.NewLine);
                 File.AppendAllText(GlobalConstants.reminderCSVLog, reminderLogEntry + Environment.NewLine);
@@ -228,7 +232,7 @@ namespace QuickReminders
                 if (ReminderList.Items[i].Checked)
                 {
                     //...then log it...
-                    String reminderCSVEntry = ReminderList.Items[i].SubItems[0].Text + "¦" + ReminderList.Items[i].SubItems[1].Text + "¦" + ReminderList.Items[i].SubItems[2].Text;
+                    String reminderCSVEntry = ReminderList.Items[i].SubItems[0].Text + "¦" + ReminderList.Items[i].SubItems[1].Text + "¦" + ReminderList.Items[i].SubItems[2].Text + "¦" + ReminderList.Items[i].SubItems[3].Text;
                     String reminderLogEntry = "DEL," + reminderCSVEntry;
                     File.AppendAllText(GlobalConstants.reminderCSVLog, reminderLogEntry + Environment.NewLine);
                     //...delete it...
@@ -248,7 +252,7 @@ namespace QuickReminders
             File.Delete(GlobalConstants.reminderCSV);
             for (int i = 0; i < ReminderList.Items.Count; i++)
             {
-                String reminderCSVEntry = ReminderList.Items[i].SubItems[0].Text + "¦" + ReminderList.Items[i].SubItems[1].Text + "¦" + ReminderList.Items[i].SubItems[2].Text;
+                String reminderCSVEntry = ReminderList.Items[i].SubItems[0].Text + "¦" + ReminderList.Items[i].SubItems[1].Text + "¦" + ReminderList.Items[i].SubItems[2].Text + "¦" + ReminderList.Items[i].SubItems[3].Text;
                 File.AppendAllText(GlobalConstants.reminderCSV, reminderCSVEntry + Environment.NewLine);
             }
             
@@ -281,16 +285,17 @@ namespace QuickReminders
             //If there's 1 or more checked...
             if (numberSelected > 0)
             {
-                //...enable the 'Delete Reminders' button
+                //Enable features
                 DeleteRemindersButton.Enabled = true;
+                DelayLabel.Enabled = true;
+                DelayCombobox.Enabled = true;
+                DelayButton.Enabled = true;
+
                 //If there's exactly 1 reminder checked...
                 if (numberSelected == 1)
                 {
                     //Allow certain functions, otherwise they will remain disabled if >1 checked
                     CopyAsNewButton.Enabled = true;
-                    DelayLabel.Enabled = true;
-                    DelayCombobox.Enabled = true;
-                    DelayButton.Enabled = true;
                 }
             }
             else
@@ -473,65 +478,113 @@ namespace QuickReminders
         //Allows for delaying of reminders
         private void DelayButton_Click(object sender, EventArgs e)
         {
+            //Build array of selected items so they can be selected again afterwards
+            List<string> checkedRandomIDs = new List<string>();
+
             for (int i = 0; i < ReminderList.Items.Count; i++)
             {
+
                 if (ReminderList.Items[i].Checked)
                 {
                     //Get the reminder that is checked
-                    string[] newReminderEntry = new string[3];
+                    string[] newReminderEntry = new string[4];
                     
                     //If the reminder is in the future, add the delay to the reminder's date/time
                     //If the reminder is now or in the past, add the delay to the time now
-                    DateTime dateTimePlusDelay = DateTime.Now;
-                    if (Convert.ToDateTime(ReminderList.Items[i].SubItems[0].Text) > DateTime.Now)
+                    DateTime dateTimeNow = DateTime.Now;
+                    DateTime dateTimeWithDelay = DateTime.Now;
+                    DateTime existingItemDateTime = DateTime.Now;
+                    if (Convert.ToDateTime(ReminderList.Items[i].SubItems[0].Text) > dateTimeNow)
                     {
-                        dateTimePlusDelay = Convert.ToDateTime(ReminderList.Items[i].SubItems[0].Text);
+                        existingItemDateTime = Convert.ToDateTime(ReminderList.Items[i].SubItems[0].Text);
                     }
 
                     //Add time to the DateTime object, the amount determined by the combobox
                     switch (DelayCombobox.Text)
                     {
-                        case "10 minutes":
-                            dateTimePlusDelay = dateTimePlusDelay.AddMinutes(10);
+                        case "-1 week":
+                            dateTimeWithDelay = existingItemDateTime.AddDays(-7);
                             break;
-                        case "1 hour":
-                            dateTimePlusDelay = dateTimePlusDelay.AddHours(1);
+                        case "-1 day":
+                            dateTimeWithDelay = existingItemDateTime.AddDays(-1);
                             break;
-                        case "1 day":
-                            dateTimePlusDelay = dateTimePlusDelay.AddDays(1);
+                        case "-1 hour":
+                            dateTimeWithDelay = existingItemDateTime.AddHours(-1);
                             break;
-                        case "1 week":
-                            dateTimePlusDelay = dateTimePlusDelay.AddDays(7);
+                        case "-10 minutes":
+                            dateTimeWithDelay = existingItemDateTime.AddMinutes(-10);
+                            break;
+                        case "+10 minutes":
+                            dateTimeWithDelay = existingItemDateTime.AddMinutes(10);
+                            break;
+                        case "+1 hour":
+                            dateTimeWithDelay = existingItemDateTime.AddHours(1);
+                            break;
+                        case "+1 day":
+                            dateTimeWithDelay = existingItemDateTime.AddDays(1);
+                            break;
+                        case "+1 week":
+                            dateTimeWithDelay = existingItemDateTime.AddDays(7);
                             break;
                     }
-
                     //Convert the DateTime object back into a sortable date
-                    newReminderEntry[0] = dateTimePlusDelay.ToString("s");
+                    newReminderEntry[0] = dateTimeWithDelay.ToString("s");
                     //Convert the DateTime object back into a display date
-                    newReminderEntry[1] = dateTimePlusDelay.ToString("dd/MM") + " - " + dateTimePlusDelay.ToString("hh:mm tt");
-                    newReminderEntry[2] = ReminderList.Items[i].SubItems[2].Text;
+                    newReminderEntry[1] = dateTimeWithDelay.ToString("dd/MM") + " - " + dateTimeWithDelay.ToString("hh:mm tt");
+                    newReminderEntry[2] = ReminderList.Items[i].SubItems[2].Text.ToString();
+                    newReminderEntry[3] = ReminderList.Items[i].SubItems[3].Text.ToString();
+
+                    //Add the random ID number to a list so that checked items can be re-checked at the end
+                    checkedRandomIDs.Add(ReminderList.Items[i].SubItems[3].Text.ToString());
+
+                    //Remove the reminder with the old details from the list
+                    int order = string.Compare(ReminderList.Items[i].SubItems[0].ToString(),newReminderEntry[0].ToString());
+                    if (order == -1)
+                    {
+                        ReminderList.Items[i+1].Remove();
+                    }
+                    else if (order == 1)
+                    {
+                        ReminderList.Items[i].Remove();
+                        i -= 1;
+                    }
+
                     //Add the reminder with the new details to the list
                     ListViewItem newReminder = new ListViewItem(newReminderEntry);
                     ReminderList.Items.Add(newReminder);
-                    //Remove the reminder with the old details from the list
-                    ReminderList.Items[i].Remove();
 
-                    //Re-create the Reminders.csv file
-                    File.Delete(GlobalConstants.reminderCSV);
-                    for (int j = 0; j < ReminderList.Items.Count; j++)
-                    {
-                        String reminderCSVEntry = ReminderList.Items[j].SubItems[0].Text + "¦" + ReminderList.Items[j].SubItems[1].Text + "¦" + ReminderList.Items[j].SubItems[2].Text;
-                        File.AppendAllText(GlobalConstants.reminderCSV, reminderCSVEntry + Environment.NewLine);
-                    }
-
-                    //Disable form objects
-                    DeleteRemindersButton.Enabled = false;
-                    CopyAsNewButton.Enabled = false;
-                    DelayLabel.Enabled = false;
-                    DelayCombobox.Enabled = false;
-                    DelayButton.Enabled = false;
                 }
             }
+
+        //Re-create the Reminders.csv file
+        File.Delete(GlobalConstants.reminderCSV);
+        for (int j = 0; j < ReminderList.Items.Count; j++)
+        {
+            String reminderCSVEntry = ReminderList.Items[j].SubItems[0].Text.ToString() + "¦" + ReminderList.Items[j].SubItems[1].Text.ToString() + "¦" + ReminderList.Items[j].SubItems[2].Text.ToString() + "¦" + ReminderList.Items[j].SubItems[3].Text.ToString();
+            File.AppendAllText(GlobalConstants.reminderCSV, reminderCSVEntry + Environment.NewLine);
+        }
+
+        //MessageBox.Show(checkedRandomIDs.ToString());
+
+        for (int k = 0; k < ReminderList.Items.Count; k++)
+        {
+            if (checkedRandomIDs.Contains(ReminderList.Items[k].SubItems[3].Text.ToString()))
+            {
+                ReminderList.Items[k].Checked = true;
+            }
+            else
+            {
+                ReminderList.Items[k].Checked = false;
+            }
+        }
+
+        //Disable form objects
+        DeleteRemindersButton.Enabled = false;
+        CopyAsNewButton.Enabled = false;
+        //DelayLabel.Enabled = false;
+        //DelayCombobox.Enabled = false;
+        //DelayButton.Enabled = false;
+
         }
 
         //Hides the selected blue colour from the combobox
@@ -539,5 +592,6 @@ namespace QuickReminders
         {
             DelayLabel.Focus();
         }
+
     }
 }
