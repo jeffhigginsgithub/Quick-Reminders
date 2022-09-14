@@ -14,7 +14,7 @@ Download 'Quick Reminders Installer.exe' found in the 'published' folder above, 
 
 To add a reminder, select a date and time, enter a message, then click the 'Add reminder' button. Reminders are displayed in chronological order, with the next reminder at the top of the list. Reminders will flash red when the date and time have been met.
 
-If you'd like to delay a reminder, select it by clicking its checkbox, select an amount of time to delay the reminder, then click the 'Delay' button. You can only delay one reminder at a time.
+If you'd like to delay a reminder, select it by clicking its checkbox, select an amount of time to delay the reminder, then click the 'Delay' button. Negative delay is supported.
 
 To 'copy' a reminder, click its checkbox then click 'Copy msg as new'. This will copy the text of the reminder into the new reminder area. This is useful if you need to reschedule a reminder for a time that isn't handled by the delay options. You can only copy one reminder at a time.
 
